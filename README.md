@@ -49,7 +49,7 @@ Remarque: Assurez-vous que votre version de Python est l'une de celles prises
 en charge par la dernière version de Django :
 https://docs.djangoproject.com/en/4.1/faq/install/#faq-python-version-support
 
-Nota , versions appliquées pour ce projet: 
+Nota : les versions appliquées pour ce projet: 
     
     - python : 3.10.5
     - Django : 4.1.1
@@ -63,7 +63,7 @@ Nota , versions appliquées pour ce projet:
 
  - PEP8 verification date __/10/2022
 
- - First version with authentication - 24/10/2022 
+ - First version with authentication - 25/10/2022 
 
 
 ## Acknowledgments (code inspiration): 
@@ -71,3 +71,10 @@ Nota , versions appliquées pour ce projet:
 - https://openclassrooms.com/fr/courses/7192416-mettez-en-place-une-api-avec-django-rest-framework/
 - https://ilovedjango.com/django/rest-api-framework/django-rest-framework/
 - https://code.tutsplus.com/tutorials/how-to-authenticate-with-jwt-in-django--cms-30460
+- https://medium.com/django-rest/django-rest-framework-login-and-register-user-fd91cf6029d5
+- https://pypi.org/project/drf-nested-routers/
+- https://ilovedjango.com/
+- https://stackoverflow.com/questions/71730342/django-rest-framework-method-delete-not-allowed-because-defaultrouter
+- https://stackoverflow.com/questions/8159310/why-are-blank-and-null-distinct-options-for-a-django-model
+- https://docs.djangoproject.com/en/4.1/ref/models/fields/
+- https://stackoverflow.com/questions/24629705/django-using-get-user-model-vs-settings-auth-user-model
