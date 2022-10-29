@@ -23,6 +23,15 @@
 #         return obj.product.category
 #
 #
-# admin.site.register(Category, CategoryAdmin)
-# admin.site.register(Product, ProductAdmin)
-# admin.site.register(Article, ArticleAdmin)
+from django.contrib import admin
+
+from api.models import Contributor
+from api.models import Project
+from api.models import Issue
+
+# Register your models here.
+
+admin.site.register(Contributor)
+admin.site.register(Project)
+admin.site.register(Issue)
+
