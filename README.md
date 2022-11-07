@@ -78,3 +78,10 @@ Nota : les versions appliquées pour ce projet:
 - https://stackoverflow.com/questions/8159310/why-are-blank-and-null-distinct-options-for-a-django-model
 - https://docs.djangoproject.com/en/4.1/ref/models/fields/
 - https://stackoverflow.com/questions/24629705/django-using-get-user-model-vs-settings-auth-user-model
+- https://www.data-bird.co/python/api-rest
+- https://python.doctor/page-django-rest-framework-drf-cours-tuto-tutoriel-exemples
+- https://www.youtube.com/watch?v=bpHqfT4kiR8&t=4s
+- https://www.django-rest-framework.org/tutorial/3-class-based-views/
+- https://learning.postman.com/docs/publishing-your-api/publishing-your-docs/
+- https://stackoverflow.com/questions/65860671/nestedsimplerouter-without-using-lookup-in-router
+
