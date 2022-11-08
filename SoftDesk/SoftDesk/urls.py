@@ -16,10 +16,40 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from api import urls as api_urls
+from api.views import ProjectViewset, CommentViewset, IssueViewset
+from authentication.views import RegisterView, UserByProjectView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework import routers
+from rest_framework_nested import routers
+
+
+router = routers.SimpleRouter()
+
+router.register('project', ProjectViewset, basename='project')
+router.register('comment', CommentViewset, basename='comment')
+router.register('issue', IssueViewset, basename='issue')
+
+user_router = routers.NestedSimpleRouter(router, r'project', lookup='project')
+user_router.register(r'users', ProjectViewset, basename='project-users')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('api/v1/', include(api_urls), name="api"),
-    # path('api-auth/', include('rest_framework.urls'))
+
+    path('api/signup/', RegisterView.as_view()),
     path('api-auth/', include('rest_framework.urls')),
+    path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/', include(router.urls)),
+    path('api/', include(user_router.urls)),
+
+
+
+
+
+
+
+
+    # http://127.0.0.1:8000/accounts/profile/
+
+
 ]
