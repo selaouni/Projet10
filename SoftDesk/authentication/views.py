@@ -20,7 +20,3 @@ class RegisterView(generics.CreateAPIView):
 
 class UserByProjectView(generics.CreateAPIView):
     queryset = User.objects.all()
-    # project_id = self.request.GET.get('project_id')
-    # if project_id is not None:
-    #     queryset = queryset.filter(project_id=project_id)
-    # return queryset

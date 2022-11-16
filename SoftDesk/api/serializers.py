@@ -29,11 +29,12 @@ class IssueSerializer(ModelSerializer):
 
     class Meta:
         model = Issue
-        fields = ['title', 'desc', 'author_user_id', 'priority', 'tag']
+        fields = ['title', 'desc', 'tag', 'priority', 'status',
+                  'author_user_id', 'assignee_user_id', 'created_time', 'project_id']
 
 
 class ContributorSerializer(ModelSerializer):
 
     class Meta:
         model = Contributor
-        fields = ['author_user_id', 'project_id', 'role']
+        fields = ['user_id', 'project_id', 'role']
