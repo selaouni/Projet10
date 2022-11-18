@@ -10,7 +10,7 @@ Créez une API sécurisée RESTful en utilisant Django REST
 Idriss Benjeloun
 
 ## Description:   
-Ce projet concerne le  developpement d'une API en utilisant Django REST
+Ce projet concerne le  developpement d'une API en utilisant Django REST.
 
 les fonctionnalités du projet sont comme suit:
 
@@ -31,8 +31,8 @@ Technologies utilisées:
     - installer la derniere version de django (https://docs.djangoproject.com/en/4.1/topics/install/)
     - Créer un dossier projet sur votre machine comme repository local
     - Clonner le repo distant dans votre repository local
-    - Se positionner dans le  répertoire "P9" avec:
-        >> cd P9
+    - Se positionner dans le  répertoire "Projet10" avec:
+        >> cd Projet10
     - Créer l'environnement virtuel avec:
         >> env python -m venv env
     - Activer l'environnement virtuel avec :
@@ -43,7 +43,8 @@ Technologies utilisées:
         >> python manage.py migrate
     - Lancer le serveur (en fonction de votre version de python) avec :
         >>python manage.py runserver ou >>python3 manage.py runserver
-    - Lancer la page web à partir du l'URL :  http://127.0.0.1:8000/
+    - tester les requete à partir du l'URL :  http://127.0.0.1:8000/<requete>
+      ou via un outil comme Postman.
 
 Remarque: Assurez-vous que votre version de Python est l'une de celles prises 
 en charge par la dernière version de Django :
@@ -54,16 +55,7 @@ Nota : les versions appliquées pour ce projet:
     - python : 3.10.5
     - Django : 4.1.1
     - IDE utilisé: pycharm V2022.2.1 (Community Edition)
-
-
-
-## Historique des Versions:    
-
- *Principales versions sous Github*
-
- - PEP8 verification date __/10/2022
-
- - First version with authentication - 25/10/2022 
+    - postman a été utilisé pour tester les requêtes de l'API
 
 
 ## Acknowledgments (code inspiration): 
@@ -84,4 +76,10 @@ Nota : les versions appliquées pour ce projet:
 - https://www.django-rest-framework.org/tutorial/3-class-based-views/
 - https://learning.postman.com/docs/publishing-your-api/publishing-your-docs/
 - https://stackoverflow.com/questions/65860671/nestedsimplerouter-without-using-lookup-in-router
+- https://chibisov.github.io/drf-extensions/docs/#nested-routes
+- https://medium.com/swlh/using-nested-routers-drf-nested-routers-in-django-rest-framework-951007d55cdc
+- https://www.django-rest-framework.org/tutorial/4-authentication-and-permissions/
+
+
+- 
 
