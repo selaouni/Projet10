@@ -4,13 +4,6 @@ from .models import Project, Issue
 from.models import Comment, Contributor
 
 
-
-# class UserSerializer(ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ['user_id', 'first_name', 'last_name', 'email', 'password']
-
-
 class ProjectSerializer(ModelSerializer):
     class Meta:
         model = Project
@@ -18,7 +11,9 @@ class ProjectSerializer(ModelSerializer):
 
 
 class CommentSerializer(ModelSerializer):
-
+    parent_lookup_kwargs = {
+        'issue_id': 'issue_id',
+    }
     class Meta:
         model = Comment
         fields = ['comment_id', 'description', 'author_user_id', 'issue_id', 'created_time']
@@ -29,7 +24,7 @@ class IssueSerializer(ModelSerializer):
 
     class Meta:
         model = Issue
-        fields = ['title', 'desc', 'tag', 'priority', 'status',
+        fields = ['issue_id','title', 'desc', 'tag', 'priority', 'status',
                   'author_user_id', 'assignee_user_id', 'created_time', 'project_id']
 
 

@@ -26,7 +26,7 @@ router = routers.SimpleRouter()
 
 router.register('project', ProjectViewset, basename='project')
 router.register('comments', CommentViewset, basename='comment')
-router.register('issues', IssueViewset, basename='issues')
+router.register('issues', IssueViewset, basename='issue')
 
 contributor_router = routers.NestedSimpleRouter(router, r'project', lookup='project')
 contributor_router.register(r'users', ContributorViewset, basename='project-users')
@@ -40,7 +40,7 @@ issue_router.register(r'issues', IssueViewset, basename='project-issues')
 # api/project/{project_id}/issues/
 # api/project/{project_id}/issues/{issues_id}/
 
-comment_router = routers.NestedSimpleRouter(issue_router, r'issues', lookup='issues')
+comment_router = routers.NestedSimpleRouter(issue_router, r'issues', lookup='issue')
 comment_router.register(r'comments', CommentViewset, basename='project-comments')
 
 
