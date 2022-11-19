@@ -35,5 +35,4 @@ from api.models import Comment
 admin.site.register(Contributor)
 admin.site.register(Project)
 admin.site.register(Issue)
-admin.site.register(Comment )
-
+admin.site.register(Comment)

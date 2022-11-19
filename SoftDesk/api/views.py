@@ -1,34 +1,22 @@
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from api.permissions import IsOwnerOrReadOnly
-from django.db.models import Q
+
 
 from api.models import Project, Comment, Issue, Contributor
 from .serializers import ProjectSerializer, CommentSerializer, IssueSerializer, ContributorSerializer
-import json
-
-from django.shortcuts import get_object_or_404
-# from rest_framework import permissions
-
-#
-# class UserViewset(ModelViewSet):
-#
-#     serializer_class = UserSerializer
-#     def get_queryset(self):
-#         queryset = Usr.objects.all()
 
 
 class ProjectViewset(ModelViewSet):
-
     permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = ProjectSerializer
 
     def get_queryset(self, *args, **kwargs):
         # Nous récupérons tous les produits dans une variable nommée queryset
         user = self.request.user
-        queryset = Project.objects.filter(author_user_id=user.id) | Project.objects.filter(contributor__user_id=user.id)
+        queryset = Project.objects.filter(author_user_id=user.id) | \
+                   Project.objects.filter(contributor__user_id=user.id)
 
         # Vérifions la présence du paramètre ‘project_id’ dans l’url et si oui alors appliquons notre filtre
         project_id = self.request.GET.get('project_id')
@@ -38,7 +26,6 @@ class ProjectViewset(ModelViewSet):
             queryset = queryset.filter(project_id=project_id)
 
         return queryset
-
 
     def put_queryset(self, request, pk, format=None):
         queryset = self.get_object(pk)
@@ -112,7 +99,6 @@ class CommentViewset(ModelViewSet):
 
         return queryset
 
-
     def put_queryset(self, request, pk, format=None):
         queryset = self.get_object(pk)
         serializer = CommentSerializer(queryset, data=request.data)
@@ -129,6 +115,7 @@ class CommentViewset(ModelViewSet):
     def post_queryset(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
+
 class ContributorViewset(ModelViewSet):
     permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
     queryset = Contributor.objects.all().select_related('project_id').prefetch_related('user_id')
@@ -141,8 +128,4 @@ class ContributorViewset(ModelViewSet):
         except Project.DoesNotExist:
             print('A project with this id does not exist')
         return self.queryset.filter(project_id=project_id)
-
-
-
-
 

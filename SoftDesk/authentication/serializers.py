@@ -6,9 +6,6 @@ from django.contrib.auth.password_validation import validate_password
 from rest_framework.serializers import ModelSerializer
 
 
-
-
-
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
@@ -16,11 +13,9 @@ class UserSerializer(ModelSerializer):
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-
     @classmethod
     def get_token(cls, user):
         token = super(MyTokenObtainPairSerializer, cls).get_token(user)
-
         # Add custom claims
         token['username'] = user.username
         return token
@@ -31,7 +26,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         required=True,
         validators=[UniqueValidator(queryset=User.objects.all())]
     )
-
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
 
