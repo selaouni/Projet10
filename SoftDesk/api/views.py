@@ -86,23 +86,15 @@ class CommentViewset(ModelViewSet):
     def get_queryset(self, *args, **kwargs):
         queryset = Comment.objects.all()
         user = self.request.user
-        project_id = self.kwargs.get('project_pk')
-        print(project_id)
         queryset2 = Comment.objects.all().filter(author_user_id=user.id) | \
                     Comment.objects.filter(issue_id__project_id__contributor__user_id=user.id) | \
                     Comment.objects.filter(issue_id__project_id__author_user_id=user.id)
 
-
-        print(queryset2)
-
+        project_id = self.kwargs.get('project_pk')
         issue_id = self.kwargs.get('issue_pk')
-        print(issue_id)
 
         if project_id is not None and issue_id is not None:
-            # queryset = queryset2.filter(issue_id__project_id=project_id).prefetch_related(issue_id)
             queryset = queryset2.filter(issue_id=issue_id) and queryset2.filter(issue_id__project_id=project_id)
-
-            # qs = Album.objects.prefetch_related('tracks')
 
         return queryset
 
