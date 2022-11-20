@@ -2,6 +2,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from api.permissions import IsOwnerOrReadOnly
+from django.db.models import Q
 
 
 from api.models import Project, Comment, Issue, Contributor
@@ -20,7 +21,6 @@ class ProjectViewset(ModelViewSet):
 
         # Vérifions la présence du paramètre ‘project_id’ dans l’url et si oui alors appliquons notre filtre
         project_id = self.request.GET.get('project_id')
-        # qs = Album.objects.prefetch_related('tracks')
 
         if project_id is not None:
             queryset = queryset.filter(project_id=project_id)
@@ -86,16 +86,23 @@ class CommentViewset(ModelViewSet):
     def get_queryset(self, *args, **kwargs):
         queryset = Comment.objects.all()
         user = self.request.user
-        issue_id = self.kwargs.get('issue_id')
-        print(issue_id)
-        queryset2 = Comment.objects.all().filter(author_user_id=user.id).select_related(issue_id) | \
+        project_id = self.kwargs.get('project_pk')
+        print(project_id)
+        queryset2 = Comment.objects.all().filter(author_user_id=user.id) | \
                     Comment.objects.filter(issue_id__project_id__contributor__user_id=user.id) | \
                     Comment.objects.filter(issue_id__project_id__author_user_id=user.id)
+
+
         print(queryset2)
-        comment_id = self.kwargs.get('comment_id')
-        print("comment_id", comment_id)
-        if comment_id is not None:
-            queryset = queryset2.filter(comment_id=comment_id)
+
+        issue_id = self.kwargs.get('issue_pk')
+        print(issue_id)
+
+        if project_id is not None and issue_id is not None:
+            # queryset = queryset2.filter(issue_id__project_id=project_id).prefetch_related(issue_id)
+            queryset = queryset2.filter(issue_id=issue_id) and queryset2.filter(issue_id__project_id=project_id)
+
+            # qs = Album.objects.prefetch_related('tracks')
 
         return queryset
 
